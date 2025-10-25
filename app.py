@@ -3,16 +3,15 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Page settings
-st.set_page_config(page_title="☀️ PV Energy Dashboard", layout="wide")
-st.title("☀️ Solar PV Dashboard")
+st.set_page_config(page_title="👼 PV Energy Dashboard", layout="wide")
+st.title("👼 Solar PV Dashboard")
 
-# Upload Excel file
-uploaded_file = st.file_uploader("Upload PV Data (Excel file)", type=["xlsx"])
+# --- Automatically load Excel file ---
+excel_file = "ITA_PG_Bastardo_community_REV4.xlsx"  # put your Excel filename here (same folder as script)
 
-if uploaded_file:
-    # Load 3rd sheet (index = 2)
-    df = pd.read_excel(uploaded_file, sheet_name=2)
-    st.success("✅ File loaded successfully (3rd sheet)")
+try:
+    df = pd.read_excel(excel_file, sheet_name=2)  # load 3rd sheet
+    st.success(f"✅ File '{excel_file}' loaded successfully (3rd sheet)")
 
     # Clean column names
     df.columns = df.columns.str.strip()
@@ -78,5 +77,5 @@ if uploaded_file:
         st.write("**Hourly Data**")
         st.dataframe(hourly_df)
 
-else:
-    st.info("👈 Upload your Excel file to begin.")
+except FileNotFoundError:
+    st.info(f"👈 Excel file '{excel_file}' not found. Please upload your Excel file to begin.")
