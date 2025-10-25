@@ -42,7 +42,7 @@ try:
     hourly_df = hourly_df.loc[mask_hourly]
 
     # KPIs
-    st.subheader("📊 Key Performance Indicators")
+    st.subheader("✊ Key Performance Indicators")
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Total Energy (kWh)", f"{daily_df['Daily generated electricity [kWh]'].sum():.2f}")
     col2.metric("Average Daily Energy (kWh)", f"{daily_df['Daily generated electricity [kWh]'].mean():.2f}")
