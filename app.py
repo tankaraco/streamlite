@@ -7,9 +7,9 @@ import plotly.graph_objects as go
 # Page Configuration
 # -----------------------------------------------------------
 st.set_page_config(
-    page_title="☀️ Solar PV Energy Dashboard",
+    page_title="👼 Solar PV Energy Dashboard",
     layout="wide",
-    page_icon="☀️"
+    page_icon="👼"
 )
 
 # -----------------------------------------------------------
@@ -23,7 +23,7 @@ st.markdown("""
         font-family: 'Segoe UI', sans-serif;
     }
     .main-title {
-        font-size: 44px;
+        font-size: 36px;
         font-weight: 700;
         color: #f5a623;
         text-align: center;
@@ -34,30 +34,30 @@ st.markdown("""
     .subtitle {
         text-align: center;
         color: #666666;
-        font-size: 18px;
+        font-size: 16px;
         margin-top: -10px;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
     }
     hr {
         border: none;
         height: 1px;
         background: linear-gradient(to right, transparent, #f5a623, transparent);
-        margin-bottom: 25px;
+        margin-bottom: 20px;
     }
     .metric-card {
         background-color: #fffdfa;
-        padding: 20px;
-        border-radius: 15px;
+        padding: 15px;
+        border-radius: 12px;
         text-align: center;
         box-shadow: 0 4px 10px rgba(245,166,35,0.15);
     }
     .metric-value {
-        font-size: 26px;
+        font-size: 22px;
         font-weight: 700;
         color: #333333;
     }
     .metric-label {
-        font-size: 14px;
+        font-size: 13px;
         color: #777777;
     }
     </style>
@@ -67,15 +67,15 @@ st.markdown("""
 # Title Section
 # -----------------------------------------------------------
 st.markdown("""
-    <div class="main-title">☀️ Solar PV Energy Dashboard</div>
-    <div class="subtitle">Visualizing clean energy performance with elegance ⚡</div>
+    <div class="main-title">👼 Solar PV Energy Dashboard</div>
+    <div class="subtitle">Hello droppie ⚡</div>
     <hr>
 """, unsafe_allow_html=True)
 
 # -----------------------------------------------------------
 # Load Data
 # -----------------------------------------------------------
-excel_file = "ITA_PG_Bastardo_community_REV4.xlsx"  # Update filename if needed
+excel_file = "ITA_PG_Bastardo_community_REV4.xlsx"  # Update filename
 
 try:
     df = pd.read_excel(excel_file, sheet_name=2)
@@ -137,17 +137,18 @@ try:
             daily_df,
             x="Date",
             y="Daily generated electricity [kWh]",
-            title="🌅 Daily Generated Electricity",
             color="Daily generated electricity [kWh]",
             color_continuous_scale="sunset",
             template="plotly_white"
         )
         fig1.update_layout(
+            margin=dict(l=10, r=10, t=40, b=30),
+            title="🌅 Daily Generated Electricity",
+            title_x=0.5,
             xaxis_title="Date",
             yaxis_title="Energy [kWh]",
-            title_x=0.5,
             hovermode="x unified",
-            font=dict(size=14),
+            font=dict(size=12),
         )
         st.plotly_chart(fig1, use_container_width=True)
 
@@ -162,16 +163,18 @@ try:
             y=hourly_by_hour["Hourly generated electricity [kWh]"],
             mode="lines+markers",
             line=dict(color="#2ECC71", width=3),
-            marker=dict(size=9, color="#27AE60"),
+            marker=dict(size=8, color="#27AE60"),
             name="Hourly Energy"
         ))
         fig2.update_layout(
+            margin=dict(l=10, r=10, t=40, b=30),
             title="⏱️ Average Hourly Generated Electricity",
             xaxis_title="Hour of Day",
             yaxis_title="Energy [kWh]",
             template="plotly_white",
             title_x=0.5,
             hovermode="x",
+            font=dict(size=12)
         )
         st.plotly_chart(fig2, use_container_width=True)
 
